@@ -12,12 +12,15 @@ import java.util.List;
 @RequestMapping("/api")
 public class EmployeeRestController {
 
+    // inject employee dao
     private EmployeeDAO employeeDAO;
 
-    public EmployeeRestController(EmployeeDAO employeeDAO) {
-        this.employeeDAO = employeeDAO;
+    // constructor injection
+    public EmployeeRestController(EmployeeDAO theEmployeeDAO) {
+        employeeDAO = theEmployeeDAO;
     }
 
+    // expose "/employees" to return all employees
     @GetMapping("/employees")
     public List<Employee> getAllEmployees(){
         return employeeDAO.findAll();
